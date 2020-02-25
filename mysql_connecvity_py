@@ -1,4 +1,4 @@
-########################################  How to make connection with mysql/MariaDB using python3 #############################
+#####################################  How to make connection with mysql/MariaDB using python3 ################################
 
 1st You need to check python3 version by using the command in ubuntu.
 ---------------------------------------------------------------------
@@ -6,11 +6,14 @@ python3 --version
 ---------------------------------------------------------------------
 2nd You need to check mysql or mariaDB module installed on your ubuntu machine.
 ---------------------------------------------------------------------
-pip3 list
+pip3 list | grep PyMySQL
 ---------------------------------------------------------------------
-###############################################################################################################################
+######################################  Write a connection with Mysql/MariaDB using Python3 ###################################
 
 #!/usr/bin/env python3
+
+
+
 
 
 
