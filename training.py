@@ -136,3 +136,22 @@ f.write(timestamp)
 f.close()
 
 #############################################################################################################################
+
+#!/usr/bin/python3
+
+import pymysql
+import sys
+import csv
+import os
+
+db = pymysql.connect("192.168.0.33","aftab","aftab","testing" )
+cur = db.cursor()
+sql = 'SELECT * FROM MOVIES;'
+cur.execute(sql)
+
+rows = cur.fetchall()
+
+for x in rows:
+    print(x)
+    
+#############################################################################################################################    
