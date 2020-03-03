@@ -122,3 +122,17 @@ now = datetime.datetime.now()
 print (now.strftime("%Y-%m-%d %H:%M:%S"))
 
 #############################################################################################################################
+
+#!/usr/bin/env python3
+
+import datetime
+
+now = datetime.datetime.now()
+timestamp = (now.strftime("%Y-%m-%d %H:%M:%S"))
+print(timestamp)
+
+f = open("/tmp/timestamp.txt", "w")
+f.write(timestamp)
+f.close()
+
+#############################################################################################################################
