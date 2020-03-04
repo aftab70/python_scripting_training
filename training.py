@@ -176,6 +176,8 @@ f1 = open("/tmp/article.json", "a+")
 
 ######################################################################################################
 
+f1 = open("/tmp/example.json", "a+")
+
 for x in rows:
     b1 = html.unescape(x[0])
     b2 = urllib.parse.unquote(b1)
