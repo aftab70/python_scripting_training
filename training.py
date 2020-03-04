@@ -188,3 +188,13 @@ for x in rows:
 
 db.close()
 ######################################################################################################
+
+for x in rows:
+    b1 = html.unescape(x[1])
+    b2 = urllib.parse.unquote(b1)
+    print(b2)
+    my_json_string = "{PAGE_UUID:" + str(x[0]) + ",TITLE:" + str(b2) + "}"
+    print(my_json_string)
+    f.write(my_json_string)
+    
+############################################################################################################################    
