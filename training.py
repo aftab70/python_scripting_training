@@ -154,4 +154,35 @@ rows = cur.fetchall()
 for x in rows:
     print(x)
     
-#############################################################################################################################    
+#############################################################################################################################
+
+#!/usr/bin/python3
+
+import pymysql
+import html
+import urllib
+
+
+db = pymysql.connect("192.168.0.227 ","aftab","aftab","testing",3309 )
+cur = db.cursor()
+sql = ' SELECT TEXT,USER_ID FROM USER_POST LIMIT 0,2 ; '
+cur.execute(sql)
+
+rows = cur.fetchall()
+
+# creates article.json file for data entry
+f1 = open("/tmp/article.json", "a+")
+
+
+######################################################################################################
+
+for x in rows:
+    b1 = html.unescape(x[0])
+    b2 = urllib.parse.unquote(b1)
+    print(b2)
+    my_json_string = "{TEXT:" + str(b2) + ",USER_ID:"+str(x[1])+"}"
+
+    f1.write(my_json_string)
+
+db.close()
+######################################################################################################
