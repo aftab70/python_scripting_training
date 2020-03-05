@@ -43,3 +43,42 @@ for x in rows:
 
 f.close()
 db.close()
+
+
+#############################################################################################################################
+
+# Updated 
+
+#!/usr/bin/python3
+
+import pymysql
+import html
+import urllib
+import json
+import os
+
+
+db = pymysql.connect("192.168.0.227 ","aftab","aftab","testing",3309 )
+cur = db.cursor()
+sql = """ SELECT  USER_ID, TEXT, SUBSTRING(INTEREST, 15,(LENGTH(INTEREST)-16) ) AS INTEREST FROM USER_POST   ;"""
+cur.execute(sql)
+
+rows = cur.fetchall()
+
+f = open("/tmp/user_post.json", "a+")
+
+for x in rows:
+    if x[1] is not None:
+        decoded = html.unescape(x[1])
+        decoded = urllib.parse.unquote(decoded)
+        #print(decoded)
+        decoded =(decoded.replace('"', ''))
+        print(decoded)
+        my_json_string = "[{DECODED:" + '"' + str(decoded) + '"' + "}]"
+        print(my_json_string)
+        f.write(my_json_string)
+
+    else:
+        continue
+
+os.system("""curl -u admin:PASSWORD 'http://localhost:8983/solr/user_core/update?commit=true' --data-binary @/tmp/user_post.json -H 'Content-type:application/json'""")
